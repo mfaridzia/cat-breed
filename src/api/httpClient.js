@@ -22,7 +22,7 @@ const http = axios.create ({
 
 http.interceptors.request.use (
   function (config) {
-    const apiKey = "111fe745-a260-4616-ad6a-b725d5d9924e";
+    const apiKey = process.env.REACT_APP_API_KEY;
     if (apiKey) config.headers['x-api-key'] = apiKey;
     return config;
   },

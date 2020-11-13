@@ -1,13 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
-import Home from './components/Home';
-
-const Container = styled.div`
-  background: white;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-`
+import Home from './pages/Home';
+import Container from "./components/Container";
 
 const App = () => {
   return (
