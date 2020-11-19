@@ -1,11 +1,12 @@
 import React, { Fragment, useEffect, useState } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import AsyncSelect from 'react-select/async';
 import axios from 'axios';
-import http from '../api/httpClient';
+import http from '../services/httpClient';
 import cat1 from '../assets/cat1.png';
 import cat2 from '../assets/cat2.png';
 import cat3 from '../assets/cat3.png';
-import Loading from '../components/LoadingCat';
+import DropdownIndicator from '../components/DropwdownIndicator';
 import customStyles from '../components/CustomStyleRS';
 import { Header, Title, TextDescription } from '../components/Header';
 import { Footer, FooterBox, FooterText } from '../components/Footer';
@@ -17,35 +18,34 @@ import {
 } from "../components/WhySectionImage";
 import {
   Section, SectionTitle, Line, SectionTextWrapper, SectionSubTitle, SectionLink, ImageWrapper,
-  Image,ImageWrapperName, ImageName
+  ImageWrapperName, ImageName
 } from "../components/CatSection";
+import { LazyImage } from '../components/LazyImage';
 
 const Home = () => {
+  let history = useHistory();
   const [breeds, setBreeds] = useState([]);
   const [searchBreeds, setSearchBreeds] = useState('');
   const [selectedBreed, setSelectedBreed] = useState(null);
-  const [loading, setLoading] = useState(false);
 
   const handleInputChange = value => setSearchBreeds(value);
-  const handleSelectedValue = value => setSelectedBreed(value);
+
+  const handleSelectedValue = value => {
+    setSelectedBreed(value);
+    history.push(`/breed/${value?.label}`);
+  }
 
   const loadBreedsOptions = () => {
     return http.get(`breeds/search?q=${searchBreeds}`)
       .then(breeds => {
-        let dataBreeds = []
-        for (let i = 0; i < breeds.data.length; i++) {
-          dataBreeds.push({
-            "label": breeds.data[i].id,
-            "value": breeds.data[i].name
-          })
-        }
-        console.log(dataBreeds)
-        return dataBreeds;
+        return breeds.data.map(breed => ({
+          "label": breed.id,
+          "value": breed.name
+        }))
       })
   }
 
   useEffect(() => {
-    setLoading(true);
     let source = axios.CancelToken.source();
     const fetchBreeds = async () => {
       try {
@@ -56,38 +56,32 @@ const Home = () => {
           }
         });
 
-        const tempDataBreeds = []; 
-        // jalan secara sequensial, bisa ganti pake Promise.all biar jalan secara parallel
-        for (let i = 0; i < response.data.length; i++) {
-          let images = await http.get("images/search", {
+        const getImageBreeds = data => {
+          return http.get("images/search", {
             cancelToken: source.token,
             params: {  
               limit: 4,
               mime_types: ['png', 'jpg'],
-              breed_id: response.data[i].id
+              breed_id: data.id
             }
           });
-          tempDataBreeds.push(images.data)
         }
 
-        const result = tempDataBreeds.map(item => {
-          let data = item[0].breeds
-          let images = item[0].url
-          return {
-            data,
-            images
-          }
-        })
+        const iterateImagesCatBreeds = response.data.map(getImageBreeds);
+        const imagesCatBreeds = await Promise.all(iterateImagesCatBreeds);
+        const resultImagesCatBreeds = imagesCatBreeds.map(item => item.data);
+        const processCatDataBreeds = resultImagesCatBreeds.map(breed => ({
+          data: breed[0].breeds,
+          images: breed[0].url
+        }));
 
-        setBreeds(result);
-        setLoading(false);
+        setBreeds(processCatDataBreeds);
       } catch (error) {
         if (axios.isCancel(error)) {
           console.log('cancelled');
         } else {
           throw error;
         }
-        setLoading(false);
       }
     };
     fetchBreeds();
@@ -99,19 +93,28 @@ const Home = () => {
 
   const renderCat = () => {
     return (
-      loading ? <Loading /> : ( 
         breeds.map(breed => (
           <Fragment key={breed.images}>
             <ImageWrapperName>
               { breed.data.map(item => (
                 <Fragment>
-                  <a href={item.name}> <Image src={breed.images} alt={item.name} /> </a>
-                  <ImageName> { item.name } </ImageName>
+                  <Link to={`/breed/${item.id}`}> 
+                    <LazyImage 
+                      src={breed.images} 
+                      alt={item.name} 
+                      width="240"
+                      height="200"
+                      margin="0px 18px"
+                      border="1px solid #f1f1f1"
+                      borderRadius="20px"
+                    />
+                  </Link>
+                  <ImageName> {item.name} </ImageName>
                 </Fragment>
               )) }
              </ImageWrapperName> 
           </Fragment>
-        ))
+        )
       )
     )
   }
@@ -120,7 +123,7 @@ const Home = () => {
     <Fragment>
       <Header>
         <Title> CatWiki </Title>
-        <TextDescription> Get to know more about your cat breed. </TextDescription>
+        <TextDescription> Get to know more about your cat breed </TextDescription>
 
         <AsyncSelect 
           styles={customStyles}
@@ -135,12 +138,12 @@ const Home = () => {
           loadOptions={loadBreedsOptions}
           onInputChange={handleInputChange}
           onChange={handleSelectedValue}
-          components={{ DropdownIndicator:() => null, IndicatorSeparator:() => null }}
+          components={{ DropdownIndicator, IndicatorSeparator:() => null }}
         />
       </Header>
       <Section>
         <SectionTitle>
-          Most Searched Breeds
+          Most Searched Breeds 
           <Line />
         </SectionTitle>
       <SectionTextWrapper>
@@ -149,7 +152,7 @@ const Home = () => {
           66+ Breeds For you <br /> to discover
         </SectionSubTitle>
 
-        <SectionLink href=""> SEE MORE &#8594; </SectionLink>
+        <SectionLink to="/popular"> SEE MORE &#8594; </SectionLink>
       </SectionTextWrapper>
 
       <ImageWrapper>
@@ -175,11 +178,14 @@ const Home = () => {
         <WhySectionImage>
           <WhySectionImageCat>
             <WhySectionImageCatBox> 
-              <WhySectionImageGalery src={cat2} height="100" width="200" />
-              <WhySectionImageGalery src={cat1} height="200" width="150" mleft="50px" />
+              <WhySectionImageGalery 
+                src={cat2} loading="lazy" alt="cat2" height="130" width="230" />
+              <WhySectionImageGalery 
+                src={cat1} loading="lazy" alt="cat1" height="200" width="150" mleft="80px" />
             </WhySectionImageCatBox> 
             <WhySectionImageCatBox>
-              <WhySectionImageGalery src={cat3} height="250" width="200" />
+              <WhySectionImageGalery 
+              src={cat3} loading="lazy" alt="cat3" height="250" width="200" />
             </WhySectionImageCatBox>
           </WhySectionImageCat>
         </WhySectionImage>

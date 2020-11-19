@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 export const Section = styled.section`
 background-color: white;
@@ -25,6 +26,19 @@ width: 80%;
 height: auto;
 margin: 0 auto;
 `
+export const SectionLink = styled(Link)`
+  color: black;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-left: auto;
+  margin-top: auto;
+  text-decoration: none;
+  cursor: pointer;
+  :hover {
+    text-decoration: underline;
+  }
+`
 export const SectionSubTitle = styled.h1`
 color: black;
 font-family: 'Montserrat', sans-serif;
@@ -33,19 +47,6 @@ letter-spacing: 0px;
 margin-top: 20px;
 margin-left: 15px;
 `
-export const SectionLink = styled.a`
-color: black;
-font-family: 'Montserrat', sans-serif;
-font-weight: 500;
-letter-spacing: 1px;
-margin-left: auto;
-margin-top: auto;
-text-decoration: none;
-cursor: pointer;
-:hover {
-  text-decoration: underline;
-}
-`
 export const ImageWrapper = styled.div`
 display: flex;
 flex-direction: row;
@@ -53,13 +54,6 @@ background-color: white;
 width: 80%;
 height: 200px;
 margin: 30px auto 100px;
-`
-export const Image = styled.img`
-width: 240px;
-height: 200px;
-margin: 0 18px;
-border-radius: 20px;
-border: 1px solid #f1f1f1;
 `
 export const ImageWrapperName = styled.div`
 display: flex;

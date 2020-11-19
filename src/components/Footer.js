@@ -1,9 +1,13 @@
 import styled from 'styled-components';
 
 export const Footer = styled.footer`
-  width: 100%;
-  height: 50px;
   background-color: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  width: 100%;
 `
 export const FooterBox = styled.div`
   width: 80%;

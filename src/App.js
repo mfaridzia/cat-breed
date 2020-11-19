@@ -1,12 +1,31 @@
 import React from 'react';
-import Home from './pages/Home';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Container from "./components/Container";
+import Home from './pages/Home';
+import DetailBreed from './pages/DetailBreed';
+import PopularBreed from './pages/PopularBreed';
+import NotFound from './pages/NotFound';
 
 const App = () => {
   return (
-    <Container>
-      <Home />
-    </Container>
+    <Router>
+      <Container>
+        <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/breed/:id">
+            <DetailBreed />
+          </Route>
+          <Route path="/popular">
+            <PopularBreed />
+          </Route>
+          <Route>
+            <NotFound />
+          </Route>
+        </Switch>
+      </Container>
+    </Router>
   );
 }
 

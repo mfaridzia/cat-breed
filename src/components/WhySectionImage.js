@@ -19,7 +19,7 @@ export const WhySectionImageCatBox = styled.div`
   height: 0 auto;
   padding-left: 15px;
   position: relative;
-  left: 150px;
+  left: 130px;
 `
 export const WhySectionImageGalery = styled.img`
   border: 0px solid white;

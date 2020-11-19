@@ -2,7 +2,7 @@ const customStyles = {
   container: (provided) => ({
     ...provided,
     display: 'inline-block',
-    width: '300px',
+    width: '330px',
     minHeight: '1px',
     textAlign: 'left',
     marginLeft: '150px',
