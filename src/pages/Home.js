@@ -2,24 +2,24 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import AsyncSelect from 'react-select/async';
 import axios from 'axios';
-import http from '../services/httpClient';
+import http from '../services/api';
 import cat1 from '../assets/cat1.png';
 import cat2 from '../assets/cat2.png';
 import cat3 from '../assets/cat3.png';
-import DropdownIndicator from '../components/DropwdownIndicator';
-import customStyles from '../components/CustomStyleRS';
+import DropdownIndicator from '../components/Custom/DropwdownIndicator';
+import customStyles from '../components/Custom/CustomStyleRS';
 import { Header, Title, TextDescription } from '../components/Header';
 import { Footer, FooterBox, FooterText } from '../components/Footer';
 import { 
   WhySection, WhySectionText, WhySectionLine,  WhySectionTitle,  WhySectionDesc, WhySectionLink,
-} from "../components/WhySection";
+} from "../components/Section/WhySection";
 import {
   WhySectionImage, WhySectionImageCat, WhySectionImageCatBox, WhySectionImageGalery
-} from "../components/WhySectionImage";
+} from "../components/Section/WhySectionImage";
 import {
   Section, SectionTitle, Line, SectionTextWrapper, SectionSubTitle, SectionLink, ImageWrapper,
   ImageWrapperName, ImageName
-} from "../components/CatSection";
+} from "../components/Section/CatSection";
 import { LazyImage } from '../components/LazyImage';
 
 const Home = () => {

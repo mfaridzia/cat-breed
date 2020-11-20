@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import Container from "./components/Container";
+import Container from "./components/Wrapper/Container";
 import Home from './pages/Home';
 import DetailBreed from './pages/DetailBreed';
 import PopularBreed from './pages/PopularBreed';

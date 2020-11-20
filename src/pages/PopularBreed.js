@@ -1,10 +1,10 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import http from '../services/httpClient';
+import http from '../services/api';
 import styled from 'styled-components';
 import { LogoWrapper, LogoLink, LogoText } from '../components/Logo';
-import Container from '../components/Container';
+import Container from '../components/Wrapper/Container';
 import { LazyImage } from '../components/LazyImage';
 
 const Box = styled.div`

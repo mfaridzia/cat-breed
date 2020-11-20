@@ -2,10 +2,11 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import axios from 'axios';
-import http from '../services/httpClient';
-import Container from '../components/Container';
+import http from '../services/api';
+import Container from '../components/Wrapper/Container';
 import { LazyImage } from '../components/LazyImage';
 import { LogoWrapper, LogoLink, LogoText } from '../components/Logo';
+import Loading from '../components/Loading/LoadingCat';
 
 const ContentWrapper = styled.div`
   background-color: white;
@@ -225,7 +226,7 @@ const DetailBreed = () => {
            { renderCat() }
           </ListPhotos>
          </Fragment>
-      ) : "Loading..."
+      ) : <Loading />
       }
     </Container>
   );

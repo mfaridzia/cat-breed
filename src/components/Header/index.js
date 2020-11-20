@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import heroImage from '../assets/heroImagels.png';
+import heroImage from '../../assets/heroImagels.png';
 
 export const Header = styled.header`
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Roboto:ital@1&display=swap'); 
