@@ -1,6 +1,14 @@
-# Getting Started with Create React App
+# Cat Wiki 
+
+Cat Wiki is a web based cat breed explorer based on The Cat API
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Tools
+- JavaScript
+- React
+- Styled-components
+- The Cat API
 
 ## Available Scripts
 
