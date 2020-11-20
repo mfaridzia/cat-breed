@@ -1,7 +1,6 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { Fragment, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import AsyncSelect from 'react-select/async';
-import axios from 'axios';
 import http from '../services/api';
 import cat1 from '../assets/cat1.png';
 import cat2 from '../assets/cat2.png';
@@ -17,16 +16,16 @@ import {
   WhySectionImage, WhySectionImageCat, WhySectionImageCatBox, WhySectionImageGalery
 } from "../components/Section/WhySectionImage";
 import {
-  Section, SectionTitle, Line, SectionTextWrapper, SectionSubTitle, SectionLink, ImageWrapper,
-  ImageWrapperName, ImageName
+  Section, SectionTitle, Line, SectionTextWrapper, SectionSubTitle, SectionLink, ImageWrapper
 } from "../components/Section/CatSection";
-import { LazyImage } from '../components/LazyImage';
+import RenderCat from '../components/RenderCat/RenderCat';
+import useFetchBreeds from '../hooks/useFetchBreeds';
 
 const Home = () => {
   let history = useHistory();
-  const [breeds, setBreeds] = useState([]);
   const [searchBreeds, setSearchBreeds] = useState('');
   const [selectedBreed, setSelectedBreed] = useState(null);
+  const [breeds] = useFetchBreeds(4);
 
   const handleInputChange = value => setSearchBreeds(value);
 
@@ -43,80 +42,6 @@ const Home = () => {
           "value": breed.name
         }))
       })
-  }
-
-  useEffect(() => {
-    let source = axios.CancelToken.source();
-    const fetchBreeds = async () => {
-      try {
-        const response = await http.get("breeds", {
-          cancelToken: source.token,
-          params: { 
-            limit: 4
-          }
-        });
-
-        const getImageBreeds = data => {
-          return http.get("images/search", {
-            cancelToken: source.token,
-            params: {  
-              limit: 4,
-              mime_types: ['png', 'jpg'],
-              breed_id: data.id
-            }
-          });
-        }
-
-        const iterateImagesCatBreeds = response.data.map(getImageBreeds);
-        const imagesCatBreeds = await Promise.all(iterateImagesCatBreeds);
-        const resultImagesCatBreeds = imagesCatBreeds.map(item => item.data);
-        const processCatDataBreeds = resultImagesCatBreeds.map(breed => ({
-          data: breed[0].breeds,
-          images: breed[0].url
-        }));
-
-        setBreeds(processCatDataBreeds);
-      } catch (error) {
-        if (axios.isCancel(error)) {
-          console.log('cancelled');
-        } else {
-          throw error;
-        }
-      }
-    };
-    fetchBreeds();
-
-    return () => {
-      source.cancel();
-    }
-  }, []);
-
-  const renderCat = () => {
-    return (
-        breeds.map(breed => (
-          <Fragment key={breed.images}>
-            <ImageWrapperName>
-              { breed.data.map(item => (
-                <Fragment>
-                  <Link to={`/breed/${item.id}`}> 
-                    <LazyImage 
-                      src={breed.images} 
-                      alt={item.name} 
-                      width="240"
-                      height="200"
-                      margin="0px 18px"
-                      border="1px solid #f1f1f1"
-                      borderRadius="20px"
-                    />
-                  </Link>
-                  <ImageName> {item.name} </ImageName>
-                </Fragment>
-              )) }
-             </ImageWrapperName> 
-          </Fragment>
-        )
-      )
-    )
   }
 
   return (
@@ -156,7 +81,7 @@ const Home = () => {
       </SectionTextWrapper>
 
       <ImageWrapper>
-        { renderCat() }
+        <RenderCat breeds={breeds} />
       </ImageWrapper>
       </Section>
 
