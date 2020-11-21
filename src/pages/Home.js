@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { lazy, Suspense, Fragment, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import AsyncSelect from 'react-select/async';
 import http from '../services/api';
@@ -18,8 +18,9 @@ import {
 import {
   Section, SectionTitle, Line, SectionTextWrapper, SectionSubTitle, SectionLink, ImageWrapper
 } from "../components/Section/CatSection";
-import RenderCat from '../components/RenderCat/RenderCat';
+//import RenderCat from '../components/RenderCat/RenderCat';
 import useFetchBreeds from '../hooks/useFetchBreeds';
+const RenderCat = lazy(() => import('../components/RenderCat/RenderCat'));
 
 const Home = () => {
   let history = useHistory();
@@ -81,7 +82,9 @@ const Home = () => {
       </SectionTextWrapper>
 
       <ImageWrapper>
-        <RenderCat breeds={breeds} />
+        <Suspense fallback={<>Loading</>}> 
+          <RenderCat breeds={breeds} />
+        </Suspense>
       </ImageWrapper>
       </Section>
 

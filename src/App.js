@@ -1,14 +1,16 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import Container from "./components/Wrapper/Container";
-import Home from './pages/Home';
-import DetailBreed from './pages/DetailBreed';
-import PopularBreed from './pages/PopularBreed';
-import NotFound from './pages/NotFound';
+import Spinner from './components/Loading/Spinner';
+const Home = lazy(() => import('./pages/Home'));
+const DetailBreed = lazy(() => import('./pages/DetailBreed'));
+const PopularBreed = lazy(() => import('./pages/PopularBreed'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
 const App = () => {
   return (
-    <Router>
+   <Suspense fallback={<Spinner />}>
+      <Router>
       <Container>
         <Switch>
           <Route exact path="/">
@@ -26,6 +28,7 @@ const App = () => {
         </Switch>
       </Container>
     </Router>
+   </Suspense>
   );
 }
 
