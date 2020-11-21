@@ -13,11 +13,6 @@ export const ContentPhoto = styled.div`
   height: auto;
   width: 35%;
 `
-export const ContentPhotoImg = styled.img`
-  border-radius: 30px;
-  height: 280px;
-  width: 400px;
-`
 export const ContentData = styled.div`
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Roboto:ital@1&display=swap'); 
   background-color: white;

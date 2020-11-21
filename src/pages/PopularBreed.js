@@ -6,6 +6,7 @@ import { LazyImage } from '../components/LazyImage';
 import useFetchBreeds from '../hooks/useFetchBreeds';
 import { Box, Title, ContentWrapper, ContentPhoto, 
   ContentText, ContentTitle, ContentDesc } from '../components/Content/ContentPopular';
+import Spinner from '../components/Loading/Spinner';
 
 const PopularBreed = () => {
   const [breeds] = useFetchBreeds(10);
@@ -42,6 +43,17 @@ const PopularBreed = () => {
       )
     )
   }
+
+  const renderPopularCat = () => {
+    return (
+      breeds.length > 0 ? (
+        <Box>
+          <Title> Top 10 most searched breeds </Title>
+          { renderCat() }
+        </Box>
+      ) : <Spinner />
+    )
+  }
   
   return (
     <Container>
@@ -50,10 +62,7 @@ const PopularBreed = () => {
           <LogoText> [CATWIKI] </LogoText>
         </LogoLink>
       </LogoWrapper>
-      <Box>
-        <Title> Top 10 most searched Breeds </Title>
-        { renderCat() }
-      </Box>
+      { renderPopularCat() }
     </Container>
   );
 }

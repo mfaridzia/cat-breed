@@ -5,11 +5,10 @@ import http from '../services/api';
 import Container from '../components/Wrapper/Container';
 import { LazyImage } from '../components/LazyImage';
 import { LogoWrapper, LogoLink, LogoText } from '../components/Logo';
-import Loading from '../components/Loading/LoadingCat';
-import { ContentWrapper, ContentPhoto, ContentPhotoImg,
-  ContentData, TextBold, ContentDataTitle, ContentDataDesc,
-  ContentDataBox, ContentLine, ListPhotos, ListPhotosTitle 
-} from '../components/Content/ContentDetailBreed';
+import Spinner from '../components/Loading/Spinner';
+import { ContentWrapper, ContentPhoto, ContentData, TextBold, 
+  ContentDataTitle, ContentDataDesc, ContentDataBox, ContentLine, 
+  ListPhotos, ListPhotosTitle } from '../components/Content/ContentDetailBreed';
 
 const DetailBreed = () => {
   
@@ -87,7 +86,12 @@ const DetailBreed = () => {
           </LogoWrapper> 
           <ContentWrapper> 
             <ContentPhoto> 
-              <ContentPhotoImg src={breeds[0].images} alt={id} />
+              <LazyImage 
+                src={breeds[0].images} 
+                width="400px" 
+                height="280px" alt={id} 
+                borderRadius="30px"
+            />
             </ContentPhoto>
             <ContentData> 
               <ContentDataTitle> { breeds[0]?.data[0].name } </ContentDataTitle> 
@@ -161,7 +165,7 @@ const DetailBreed = () => {
            { renderCat() }
           </ListPhotos>
          </Fragment>
-      ) : <Loading />
+      ) : <Spinner />
       }
     </Container>
   );
