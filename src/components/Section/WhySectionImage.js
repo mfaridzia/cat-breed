@@ -4,6 +4,9 @@ export const WhySectionImage = styled.div`
   height: auto;
   margin-top: 140px;
   width: 45%;
+  @media (max-width: 860px) {
+   display: none;
+  }
 `
 export const WhySectionImageCat = styled.div`
   display: flex;
@@ -20,6 +23,9 @@ export const WhySectionImageCatBox = styled.div`
   padding-left: 15px;
   position: relative;
   left: 130px;
+  @media (max-width: 860px) {
+    left: 0px;
+  }
 `
 export const WhySectionImageGalery = styled.img`
   border: 0px solid white;
@@ -28,4 +34,7 @@ export const WhySectionImageGalery = styled.img`
   height: ${props => props.height};
   margin-bottom: 20px;
   margin-left: ${props => props.mleft};
+  @media (max-width: 860px) {
+    width: 150px;
+  }
 `

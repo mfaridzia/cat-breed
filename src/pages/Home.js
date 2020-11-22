@@ -18,9 +18,31 @@ import {
 import {
   Section, SectionTitle, Line, SectionTextWrapper, SectionSubTitle, SectionLink, ImageWrapper
 } from "../components/Section/CatSection";
-//import RenderCat from '../components/RenderCat/RenderCat';
 import useFetchBreeds from '../hooks/useFetchBreeds';
+import styled from 'styled-components'
 const RenderCat = lazy(() => import('../components/RenderCat/RenderCat'));
+
+const CustomAsyncSelect = styled(AsyncSelect)`
+  display: inline-block;
+  width: 330px;
+  min-height: 1px;
+  text-align: left;
+  margin-left: 150px;
+  margin-top: 10px;
+  outline: none;
+  @media (max-width: 560px) {
+    width: 280px;
+    margin-left: 100px;
+  }
+  @media (max-width: 420px) {
+    width: 250px;
+    margin-left: 50px;
+  }
+  @media (max-width: 340px) {
+    width: 200px;
+    margin-left: 50px;
+  }
+`
 
 const Home = () => {
   let history = useHistory();
@@ -45,14 +67,14 @@ const Home = () => {
       })
   }
 
+
   return (
     <Fragment>
       <Header>
         <Title> CatWiki </Title>
         <TextDescription> Get to know more about your cat breed </TextDescription>
 
-        <AsyncSelect 
-          styles={customStyles}
+        <CustomAsyncSelect 
           cacheOptions
           noOptionsMessage={() => 'Type your cat breed..'}
           defaultOptions={false}

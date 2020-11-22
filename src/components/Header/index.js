@@ -9,6 +9,10 @@ export const Header = styled.header`
   height: 500px;
   width: 100%;
   background-attachment: fixed;
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 400px;
+  }
 `
 export const Title = styled.h1`
   color: white;
@@ -16,6 +20,11 @@ export const Title = styled.h1`
   font-size: 80px;
   letter-spacing: 5px;
   margin: 130px 150px 5px;
+  @media (max-width: 640px) {
+   font-size: 50px;
+   margin: 130px auto 0px;
+   text-align: center;
+  }
 ` 
 export const TextDescription = styled.p`
   color: white;
@@ -24,4 +33,9 @@ export const TextDescription = styled.p`
   font-weight: 500;
   margin-bottom: 25px;
   margin-left: 150px;
+  @media (max-width: 640px) {
+    font-size: 18px;
+    margin: 0px auto 25px;
+    text-align: center;
+  }
 `
