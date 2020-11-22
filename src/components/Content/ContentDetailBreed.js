@@ -12,6 +12,9 @@ export const ContentPhoto = styled.div`
   background-color: white;
   height: auto;
   width: 35%;
+  @media (max-width: 740px) {
+    display: none;
+  }
 `
 export const ContentData = styled.div`
   @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Roboto:ital@1&display=swap'); 
@@ -19,6 +22,9 @@ export const ContentData = styled.div`
   height: auto;
   margin-left: auto;
   width: 55%;
+  @media (max-width: 740px) {
+    width: 100%;
+  }
 `
 export const TextBold = styled.strong`
   color: black;
@@ -58,7 +64,21 @@ export const ListPhotos = styled.div`
   height: auto;
   margin: 0 auto 30px auto;
   width: 80%;
+  @media (max-width: 997px) and (min-width: 900px) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @media (max-width: 669px) and (min-width: 580px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
 `
 export const ListPhotosTitle = styled.h1`
+  margin: 0 auto;
   font-family: 'Montserrat', sans-serif;
+  width: 80%;
+  padding-left: 20px;
+  @media (max-width: 860px){
+    font-size: 25px;
+  }
 `

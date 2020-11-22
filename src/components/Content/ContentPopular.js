@@ -20,18 +20,30 @@ export const ContentWrapper = styled.div`
   height: auto;
   width: 100%;
   margin-bottom: 0px;
+  @media (max-width: 1200px) {
+   flex-direction: column-reverse;
+  }
 `
 export const ContentPhoto = styled.div`
   background-color: white;
   height: auto;
   width: 30%;
   margin-bottom: 40px;
+  @media (max-width: 1200px) {
+   margin-bottom: 40px;
+   width: 100%;
+  }
 `
 export const ContentText = styled.div`
   background-color: white;
   height: 150px;
   margin-left: auto;
   width: 65%;
+  @media (max-width: 1200px) {
+   height: auto;
+   margin-left: 0px;
+   width: 100%;
+  }
 `
 export const ContentTitle = styled.h2`
   color: black;

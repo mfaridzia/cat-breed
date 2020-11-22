@@ -158,10 +158,10 @@ const DetailBreed = () => {
               </ContentDataDesc>
             </ContentData>
           </ContentWrapper>
-          <ListPhotos>
-            <ListPhotosTitle>
+          <ListPhotosTitle>
               Other Photos 
-            </ListPhotosTitle>
+          </ListPhotosTitle>
+          <ListPhotos>
            { renderCat() }
           </ListPhotos>
          </Fragment>
