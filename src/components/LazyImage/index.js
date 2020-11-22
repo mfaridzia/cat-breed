@@ -10,16 +10,13 @@ const Image = styled.img`
   border-radius: ${props => props.borderRadius};
   border: ${props => props.border};
 
-  /* @media (max-width: 997px) {
-    width: 90%;
-  } */
-
   @media (max-width: 640px) {
     width: 90%;
   }
 
   @media (max-width: 500px) {
     width: 100%;
+    margin: 0px;
   }
 
   @keyframes loaded {

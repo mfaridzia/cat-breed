@@ -18,7 +18,7 @@ export const WhySectionText = styled.div`
   margin-left: 150px;
   margin-top: 200px;
   @media (max-width: 1300px) {
-    margin: 200px auto 100px;
+    margin: 100px auto 100px;
     width: 80%;
   }
 `

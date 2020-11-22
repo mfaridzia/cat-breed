@@ -16,10 +16,10 @@ export const SectionTitle = styled.h2`
   @media (max-width: 860px) {
     margin-left: 0px;
     text-align: center;
-    font-size: 40px;
+    font-size: 30px;
   }
   @media (max-width: 640px) {
-    font-size: 30px;
+    font-size: 25px;
   }
 `
 export const Line = styled.div`
@@ -39,6 +39,7 @@ export const SectionTextWrapper = styled.div`
   margin: 0 auto;
   @media (max-width: 860px) {
     width: 70%;
+    flex-direction: column;
   }
 `
 export const SectionLink = styled(Link)`
@@ -63,6 +64,7 @@ export const SectionSubTitle = styled.h1`
   margin-left: 15px;
   @media (max-width: 860px) {
     font-size: 25px;
+    display: none;
   }
 `
 export const ImageWrapper = styled.div`
