@@ -6,7 +6,6 @@ import cat1 from '../assets/cat1.png';
 import cat2 from '../assets/cat2.png';
 import cat3 from '../assets/cat3.png';
 import DropdownIndicator from '../components/Custom/DropwdownIndicator';
-import customStyles from '../components/Custom/CustomStyleRS';
 import { Header, Title, TextDescription } from '../components/Header';
 import { Footer, FooterBox, FooterText } from '../components/Footer';
 import { 

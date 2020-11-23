@@ -27,7 +27,7 @@ export const Line = styled.div`
   height: 3px;
   width: 50px;
   @media (max-width: 860px) {
-    width: 200px;
+    width: 100px;
     margin: 0 auto;
   }
 `

@@ -38,7 +38,7 @@ export const WhySectionDesc = styled.p`
   color: white;
   font-family: 'Montserrat', sans-serif;
   font-size: 17px;
-  line-height: 20px;
+  line-height: 23px;
   margin-bottom: 60px;
 `
 export const WhySectionLink = styled.a`

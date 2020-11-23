@@ -25,6 +25,12 @@ const BackLink = styled(Link)`
   top: 470px;
   right: 100px;
   text-decoration: none;
+  @media (max-width: 540px){
+    font-size: 15px;
+    right: 50px;
+    padding: 8px;
+    top: 360px;
+  }
 `
 const Text = styled.span`
   color: white;
@@ -35,6 +41,9 @@ const Text = styled.span`
 const Image = styled.img`
   width: 400px;
   margin: 30px auto;
+  @media (max-width: 540px){
+    width: 300px;
+  }
 `
 
 const NotFound = () => {

@@ -52,5 +52,5 @@ export const ContentTitle = styled.h2`
 export const ContentDesc = styled.p`
   color: black;
   font-size: 18px;
-  line-height: 25px;
+  line-height: 28px;
 `

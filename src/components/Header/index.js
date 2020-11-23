@@ -9,9 +9,11 @@ export const Header = styled.header`
   height: 500px;
   width: 100%;
   background-attachment: fixed;
+  background-color: black;
   @media (max-width: 768px) {
     width: 100%;
     height: 400px;
+    background-size: 0px;
   }
 `
 export const Title = styled.h1`
@@ -33,6 +35,7 @@ export const TextDescription = styled.p`
   font-weight: 500;
   margin-bottom: 25px;
   margin-left: 150px;
+  margin-top: 0px;
   @media (max-width: 640px) {
     font-size: 18px;
     margin: 0px auto 25px;

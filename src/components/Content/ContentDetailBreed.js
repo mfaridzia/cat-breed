@@ -81,4 +81,7 @@ export const ListPhotosTitle = styled.h1`
   @media (max-width: 860px){
     font-size: 25px;
   }
+  @media (max-width: 540px){
+    margin-bottom: 15px;
+  }
 `
