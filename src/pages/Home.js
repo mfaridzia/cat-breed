@@ -1,6 +1,5 @@
 import React, { lazy, Suspense, Fragment, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import AsyncSelect from 'react-select/async';
 import http from '../services/api';
 import cat1 from '../assets/cat1.png';
 import cat2 from '../assets/cat2.png';
@@ -17,31 +16,9 @@ import {
 import {
   Section, SectionTitle, Line, SectionTextWrapper, SectionSubTitle, SectionLink, ImageWrapper
 } from "../components/Section/CatSection";
+import CustomAsyncSelect from '../components/Custom/CustomAsyncSelect';
 import useFetchBreeds from '../hooks/useFetchBreeds';
-import styled from 'styled-components'
 const RenderCat = lazy(() => import('../components/RenderCat/RenderCat'));
-
-const CustomAsyncSelect = styled(AsyncSelect)`
-  display: inline-block;
-  width: 330px;
-  min-height: 1px;
-  text-align: left;
-  margin-left: 150px;
-  margin-top: 10px;
-  outline: none;
-  @media (max-width: 560px) {
-    width: 280px;
-    margin-left: 100px;
-  }
-  @media (max-width: 420px) {
-    width: 250px;
-    margin-left: 50px;
-  }
-  @media (max-width: 340px) {
-    width: 200px;
-    margin-left: 50px;
-  }
-`
 
 const Home = () => {
   let history = useHistory();
@@ -65,7 +42,6 @@ const Home = () => {
         }))
       })
   }
-
 
   return (
     <Fragment>
