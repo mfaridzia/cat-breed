@@ -11,7 +11,6 @@ import { ContentWrapper, ContentPhoto, ContentData, TextBold,
   ListPhotos, ListPhotosTitle } from '../components/Content/ContentDetailBreed';
 
 const DetailBreed = () => {
-  
   const [breeds, setBreeds] = useState([]);
   const { id } = useParams();
   

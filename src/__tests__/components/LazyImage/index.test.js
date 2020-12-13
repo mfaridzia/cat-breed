@@ -5,7 +5,7 @@ import { LazyImage } from '../../../components/LazyImage/index.js';
 
 describe('LazyImage Component', () => {
   beforeEach(() => {
-    // IntersectionObserver isn't available in test environment
+    //IntersectionObserver isn't available in test environment
     const mockIntersectionObserver = jest.fn()
     mockIntersectionObserver.mockReturnValue({
       observe: jest.fn().mockReturnValue(null),

@@ -35,8 +35,6 @@ const useFetchBreeds = (limit) => {
           images: breed[0].url
         }));
 
-        console.log(processCatDataBreeds);
-  
         setBreeds(processCatDataBreeds);
       } catch (error) {
         if (axios.isCancel(error)) {
