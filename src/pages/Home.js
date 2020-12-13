@@ -47,7 +47,9 @@ const Home = () => {
     <Fragment>
       <Header>
         <Title> CatWiki </Title>
-        <TextDescription> Get to know more about your cat breed </TextDescription>
+        <TextDescription data-testid="text-decsription"> 
+          Get to know more about your cat breed 
+        </TextDescription>
 
         <CustomAsyncSelect 
           cacheOptions
@@ -75,7 +77,9 @@ const Home = () => {
           66+ Breeds For you <br /> to discover
         </SectionSubTitle>
 
-        <SectionLink to="/popular"> SEE MORE &#8594; </SectionLink>
+        <SectionLink to="/popular" data-testid="see-more"> 
+          SEE MORE &#8594; 
+        </SectionLink>
       </SectionTextWrapper>
 
       <ImageWrapper>

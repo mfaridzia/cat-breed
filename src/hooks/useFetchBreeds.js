@@ -34,6 +34,8 @@ const useFetchBreeds = (limit) => {
           data: breed[0].breeds,
           images: breed[0].url
         }));
+
+        console.log(processCatDataBreeds);
   
         setBreeds(processCatDataBreeds);
       } catch (error) {
