@@ -15,4 +15,4 @@ describe('Homepage', () => {
     render(<Router> <Home /> </Router>);
     expect(screen.getByTestId('see-more')).toBeInTheDocument();
   });
-})
+});
