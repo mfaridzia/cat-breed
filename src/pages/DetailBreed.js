@@ -80,7 +80,7 @@ const DetailBreed = () => {
       { breeds.length > 0 ? (
          <Fragment>
           <LogoWrapper>
-            <LogoLink to="/"> 
+            <LogoLink to="/" data-testid="cat-wiki"> 
               <LogoText> [CATWIKI] </LogoText> 
             </LogoLink>
           </LogoWrapper> 
