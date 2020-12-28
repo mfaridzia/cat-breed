@@ -54,6 +54,18 @@ export const SectionLink = styled(Link)`
   :hover {
     text-decoration: underline;
   }
+
+  @media (max-width: 640px) {
+   margin: 0 auto;
+  }
+  @media (max-width: 500px) {
+   background: black;
+   color: white;
+   width: 70%;
+   padding: 10px;
+   text-align: center;
+   border-radius: 10px;
+  }
 `
 export const SectionSubTitle = styled.h1`
   color: black;
@@ -96,12 +108,13 @@ export const ImageWrapper = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     height: auto;
-    margin: 10px auto 50px;
+    width: 100%;
   }
   @media (max-width: 500px) {
     display: grid;
     grid-template-columns: 1fr;
     height: auto;
+    width: 100%;
     margin: 10px auto 50px;
   }
 `

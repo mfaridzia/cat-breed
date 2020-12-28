@@ -10,15 +10,6 @@ const Image = styled.img`
   border-radius: ${props => props.borderRadius};
   border: ${props => props.border};
 
-  @media (max-width: 640px) {
-    width: 90%;
-  }
-
-  @media (max-width: 500px) {
-    width: 100%;
-    margin: 0px;
-  }
-
   @keyframes loaded {
     0% {
       opacity: 0.1;
@@ -38,7 +29,7 @@ const Image = styled.img`
 `;
 
 export const LazyImage = ({ 
-  src, alt, width = 100, height = 100, margin = 0, border = 0, borderRadius = 0 
+  src, alt, width = 240, height = 200, margin = 0, border = 0, borderRadius = 0 
 }) => {
   const [imageSrc, setImageSrc] = useState(placeHolder);
   const [imageRef, setImageRef] = useState();

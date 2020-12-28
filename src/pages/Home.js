@@ -16,8 +16,9 @@ import {
 import {
   Section, SectionTitle, Line, SectionTextWrapper, SectionSubTitle, SectionLink, ImageWrapper
 } from "../components/Section/CatSection";
-import CustomAsyncSelect from '../components/Custom/CustomAsyncSelect';
+//import CustomAsyncSelect from '../components/Custom/CustomAsyncSelect';
 import useFetchBreeds from '../hooks/useFetchBreeds';
+const CustomAsyncSelect = lazy(() => import('../components/Custom/CustomAsyncSelect'));
 const RenderCat = lazy(() => import('../components/RenderCat/RenderCat'));
 
 const Home = () => {
@@ -78,7 +79,7 @@ const Home = () => {
         </SectionSubTitle>
 
         <SectionLink to="/popular" data-testid="see-more"> 
-          SEE MORE &#8594; 
+          SEE MORE &#8594;
         </SectionLink>
       </SectionTextWrapper>
 

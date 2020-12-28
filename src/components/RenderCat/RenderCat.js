@@ -9,7 +9,7 @@ const RenderCat = ({ breeds }) => {
       <Fragment key={breed.images}>
         <ImageWrapperName>
           { breed.data.map(item => (
-            <Fragment>
+            <Fragment key={item.id}>
               <Link to={`/breed/${item.id}`}> 
                 <LazyImage 
                   src={breed.images} 
