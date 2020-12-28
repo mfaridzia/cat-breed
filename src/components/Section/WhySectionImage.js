@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import ImgWithFallback from '../Custom/ImgWithFallback';
 
 export const WhySectionImage = styled.div`
   height: auto;
@@ -27,7 +28,8 @@ export const WhySectionImageCatBox = styled.div`
     left: 0px;
   }
 `
-export const WhySectionImageGalery = styled.img`
+
+export const WhySectionImageGalery = styled(ImgWithFallback)`
   border: 0px solid white;
   border-radius: 25px;
   width: ${props => props.width};
@@ -37,4 +39,4 @@ export const WhySectionImageGalery = styled.img`
   @media (max-width: 860px) {
     width: 150px;
   }
-`
+`;

@@ -2,8 +2,11 @@ import React, { lazy, Suspense, Fragment, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import http from '../services/api';
 import cat1 from '../assets/cat1.png';
+import cat1_webp from '../assets/cat1.webp';
 import cat2 from '../assets/cat2.png';
+import cat2_webp from '../assets/cat2.webp';
 import cat3 from '../assets/cat3.png';
+import cat3_webp from '../assets/cat3.webp';
 import DropdownIndicator from '../components/Custom/DropwdownIndicator';
 import { Header, Title, TextDescription } from '../components/Header';
 import { Footer, FooterBox, FooterText } from '../components/Footer';
@@ -109,13 +112,32 @@ const Home = () => {
           <WhySectionImageCat>
             <WhySectionImageCatBox> 
               <WhySectionImageGalery 
-                src={cat2} loading="lazy" alt="cat2" height="130" width="230" />
+                src={cat2_webp} 
+                loading="lazy" 
+                alt="cat2" 
+                height="130" 
+                width="230"
+                fallback={cat2}
+              />
               <WhySectionImageGalery 
-                src={cat1} loading="lazy" alt="cat1" height="200" width="150" mleft="80px" />
+                src={cat1_webp} 
+                loading="lazy" 
+                alt="cat1" 
+                height="200" 
+                width="150" 
+                mleft="80px" 
+                fallback={cat1}
+              />
             </WhySectionImageCatBox> 
             <WhySectionImageCatBox>
               <WhySectionImageGalery 
-              src={cat3} loading="lazy" alt="cat3" height="250" width="200" />
+                src={cat3_webp} 
+                loading="lazy" 
+                alt="cat3" 
+                height="250" 
+                width="200" 
+                fallback={cat3}
+              />
             </WhySectionImageCatBox>
           </WhySectionImageCat>
         </WhySectionImage>
