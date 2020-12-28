@@ -20,13 +20,13 @@ Since this project relies on third party APIs[The Cat API](https://thecatapi.com
 
 ![](https://i.imgur.com/JrDbA9o.png)
 
-per-commit [`7e1c617`]https://github.com/mfaridzia/cat-breed/commit/7e1c617bd472b7d00208db19fc0013d095736831) (latest)
+per-commit [`7e1c617`](https://github.com/mfaridzia/cat-breed/commit/7e1c617bd472b7d00208db19fc0013d095736831) (latest)
 
 ### Lighthouse Score
 
 ![](https://i.imgur.com/u0nng5r.png)
 
-per-commit [`7e1c617`]https://github.com/mfaridzia/cat-breed/commit/7e1c617bd472b7d00208db19fc0013d095736831) (latest)
+per-commit [`7e1c617`](https://github.com/mfaridzia/cat-breed/commit/7e1c617bd472b7d00208db19fc0013d095736831) (latest)
 
 
 ## Available Scripts
