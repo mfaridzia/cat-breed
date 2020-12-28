@@ -16,6 +16,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Since this project relies on third party APIs[The Cat API](https://thecatapi.com/), I can't guarantee anything regarding reliability & availability.
 
+[Live Demo](http://cat-breed.netlify.app/) version.
+
 ### Bundle Size
 
 ![](https://i.imgur.com/JrDbA9o.png)
