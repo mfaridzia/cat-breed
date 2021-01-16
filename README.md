@@ -10,6 +10,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Styled-components
 - Phosphor-react
 - React-select
+- React-query
 - The Cat API
 
 ## Caveats
