@@ -14,11 +14,11 @@ const PopularBreed = () => {
   const renderCat = () => {
     return (
         breeds.map((breed, index) => (
-          <Fragment key={breed.images}>
-            <ContentWrapper>
+          <Fragment>
+            <ContentWrapper key={breed.images}>
               { breed.data.map(item => (
                 <Fragment>
-                  <ContentPhoto>
+                  <ContentPhoto key={item.id}>
                     <Link to={`/breed/${item.id}`}> 
                       <LazyImage 
                         src={breed.images} 

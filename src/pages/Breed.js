@@ -33,13 +33,14 @@ const Breed = () => {
     }
   }
 
-  const { data: catBreed, isLoading } = useQuery('breed', fetchBreeds);
+  const { data: catBreed, isFetching } = useQuery('breed', fetchBreeds);
 
   const renderCat = () => {
     return (
       catBreed.map(breed => (
-        <Fragment key={breed.images}>
+        <Fragment>
           <LazyImage 
+            key={breed.images}
             src={breed.images} 
             alt={id} 
             width="240"
@@ -63,7 +64,7 @@ const Breed = () => {
 
   return (
     <Container>
-      { !isLoading ? (
+      { !isFetching ? (
          <Fragment>
           <LogoWrapper>
             <LogoLink to="/"> 

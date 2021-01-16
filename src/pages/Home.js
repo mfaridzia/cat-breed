@@ -58,7 +58,7 @@ const Home = () => {
     }
   }
 
-  const { data, isLoading } = useQuery('breeds', fetchBreeds, { staleTime: 1000 })
+  const { data, isFetching } = useQuery('breeds', fetchBreeds, { staleTime: 1000 })
 
   const [searchBreeds, setSearchBreeds] = useState('');
   const [selectedBreed, setSelectedBreed] = useState(null);
@@ -119,7 +119,7 @@ const Home = () => {
       </SectionTextWrapper>
 
       <ImageWrapper>
-        { isLoading ? <Spinner /> :  <RenderCat breeds={data} /> } 
+        { isFetching ? <Spinner /> :  <RenderCat breeds={data} /> } 
       </ImageWrapper>
       </Section>
 
