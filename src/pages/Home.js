@@ -1,5 +1,6 @@
-import React, { lazy, Suspense, Fragment, useState } from 'react';
+import React, { lazy, Fragment, useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { useQuery } from 'react-query';
 import http from '../services/api';
 import cat1 from '../assets/cat1.png';
 import cat1_webp from '../assets/cat1.webp';
@@ -19,16 +20,48 @@ import {
 import {
   Section, SectionTitle, Line, SectionTextWrapper, SectionSubTitle, SectionLink, ImageWrapper
 } from "../components/Section/CatSection";
-//import CustomAsyncSelect from '../components/Custom/CustomAsyncSelect';
-import useFetchBreeds from '../hooks/useFetchBreeds';
+import RenderCat from '../components/RenderCat/RenderCat';
+import Spinner from '../components/Loading/Spinner';
 const CustomAsyncSelect = lazy(() => import('../components/Custom/CustomAsyncSelect'));
-const RenderCat = lazy(() => import('../components/RenderCat/RenderCat'));
 
 const Home = () => {
   let history = useHistory();
+
+  const fetchBreeds = async () => {
+    try {
+      const response = await http.get("breeds", {
+        params: { 
+          limit: 4
+        }
+      });
+
+      const getImageBreeds = data => {
+        return http.get("images/search", {
+          params: {  
+            limit: 4,
+            mime_types: ['png', 'jpg'],
+            breed_id: data.id
+          }
+        });
+      }
+
+      const iterateImagesCatBreeds = response.data.map(getImageBreeds);
+      const imagesCatBreeds = await Promise.all(iterateImagesCatBreeds);
+      const resultImagesCatBreeds = imagesCatBreeds.map(item => item.data);
+      const processCatDataBreeds = resultImagesCatBreeds.map(breed => ({
+        data: breed[0].breeds,
+        images: breed[0].url
+      }));
+      return processCatDataBreeds;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  const { data, isLoading } = useQuery('breeds', fetchBreeds, { staleTime: 1000 })
+
   const [searchBreeds, setSearchBreeds] = useState('');
   const [selectedBreed, setSelectedBreed] = useState(null);
-  const [breeds] = useFetchBreeds(4);
 
   const handleInputChange = value => setSearchBreeds(value);
 
@@ -38,13 +71,12 @@ const Home = () => {
   }
 
   const loadBreedsOptions = () => {
-    return http.get(`breeds/search?q=${searchBreeds}`)
-      .then(breeds => {
-        return breeds.data.map(breed => ({
-          "label": breed.id,
-          "value": breed.name
-        }))
-      })
+    return http.get(`breeds/search?q=${searchBreeds}`).then(breeds => {
+      return breeds.data.map(breed => ({
+        "label": breed.id,
+        "value": breed.name
+      }))
+    })
   }
 
   return (
@@ -78,7 +110,7 @@ const Home = () => {
       <SectionTextWrapper>
 
         <SectionSubTitle>
-          66+ Breeds For you <br /> to discover
+          66+ Breeds For you to discover
         </SectionSubTitle>
 
         <SectionLink to="/popular" data-testid="see-more"> 
@@ -87,9 +119,7 @@ const Home = () => {
       </SectionTextWrapper>
 
       <ImageWrapper>
-        <Suspense fallback={<>Loading</>}> 
-          <RenderCat breeds={breeds} />
-        </Suspense>
+        { isLoading ? <Spinner /> :  <RenderCat breeds={data} /> } 
       </ImageWrapper>
       </Section>
 
@@ -146,7 +176,7 @@ const Home = () => {
       <Footer>
         <FooterBox>
           <FooterText> 
-            &#169; { new Date().getFullYear() } Cat Wiki by muhfaridzia  - Devchallenge.io
+            &#169; { new Date().getFullYear() } Cat Wiki by muhfaridzia  - Devchallenges.io
           </FooterText>
         </FooterBox>
       </Footer>

@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Container from "./components/Wrapper/Container";
 import Spinner from './components/Loading/Spinner';
 const Home = lazy(() => import('./pages/Home'));
-const DetailBreed = lazy(() => import('./pages/DetailBreed'));
+const Breed = lazy(() => import('./pages/Breed'));
 const PopularBreed = lazy(() => import('./pages/PopularBreed'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 
@@ -17,7 +17,7 @@ const App = () => {
               <Home />
             </Route>
             <Route path="/breed/:id">
-              <DetailBreed />
+              <Breed />
             </Route>
             <Route path="/popular">
               <PopularBreed />

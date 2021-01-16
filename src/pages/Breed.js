@@ -1,6 +1,6 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { Fragment } from 'react';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
+import { useQuery } from 'react-query';
 import http from '../services/api';
 import Container from '../components/Wrapper/Container';
 import { LazyImage } from '../components/LazyImage';
@@ -10,47 +10,34 @@ import { ContentWrapper, ContentPhoto, ContentData, TextBold,
   ContentDataTitle, ContentDataDesc, ContentDataBox, ContentLine, 
   ListPhotos, ListPhotosTitle } from '../components/Content/ContentDetailBreed';
 
-const DetailBreed = () => {
-  const [breeds, setBreeds] = useState([]);
+const Breed = () => {
   const { id } = useParams();
   
-  useEffect(() => {
-    let source = axios.CancelToken.source();
-    const fetchBreeds = async () => {
-      try {
-        const response = await http.get("images/search", {
-          cancelToken: source.token,
-          params: {  
-            limit: 8,
-            mime_types: ['png', 'jpg'],
-            breed_id: id
-          }
-        });
-  
-        const processCatDataBreeds = response.data.map(breed => ({
-          data: breed.breeds,
-          images: breed.url
-        }));
-  
-        setBreeds(processCatDataBreeds);
-      } catch (error) {
-        if (axios.isCancel(error)) {
-          console.log('cancelled');
-        } else {
-          throw error;
+  const fetchBreeds = async () => {
+    try {
+      const response = await http.get("images/search", {
+        params: {  
+          limit: 8,
+          mime_types: ['png', 'jpg'],
+          breed_id: id
         }
-      }
-    };
-    fetchBreeds();
-  
-    return () => {
-      source.cancel();
+      });
+
+      const processCatDataBreeds = response.data.map(breed => ({
+        data: breed.breeds,
+        images: breed.url
+      }));
+      return processCatDataBreeds;
+    } catch (error) {
+     throw error;
     }
-  }, [id]);
+  }
+
+  const { data: catBreed, isLoading } = useQuery('breed', fetchBreeds);
 
   const renderCat = () => {
     return (
-      breeds.map(breed => (
+      catBreed.map(breed => (
         <Fragment key={breed.images}>
           <LazyImage 
             src={breed.images} 
@@ -76,7 +63,7 @@ const DetailBreed = () => {
 
   return (
     <Container>
-      { breeds.length > 0 ? (
+      { !isLoading ? (
          <Fragment>
           <LogoWrapper>
             <LogoLink to="/"> 
@@ -86,73 +73,73 @@ const DetailBreed = () => {
           <ContentWrapper> 
             <ContentPhoto> 
               <LazyImage 
-                src={breeds[0].images} 
+                src={catBreed[0].images} 
                 width="400px" 
                 height="280px" alt={id} 
                 borderRadius="30px"
             />
             </ContentPhoto>
             <ContentData> 
-              <ContentDataTitle> { breeds[0]?.data[0].name } </ContentDataTitle> 
-              <ContentDataDesc> { breeds[0]?.data[0].description } </ContentDataDesc>
+              <ContentDataTitle> { catBreed[0]?.data[0].name } </ContentDataTitle> 
+              <ContentDataDesc> { catBreed[0]?.data[0].description } </ContentDataDesc>
               <ContentDataDesc> 
                 <TextBold> Temperament: </TextBold> 
-                { breeds[0]?.data[0].temperament } 
+                { catBreed[0]?.data[0].temperament } 
               </ContentDataDesc>
               <ContentDataDesc> 
                 <TextBold> Origin: </TextBold> 
-                { breeds[0]?.data[0].origin } 
+                { catBreed[0]?.data[0].origin } 
               </ContentDataDesc>
               <ContentDataDesc> 
                 <TextBold> Life Span: </TextBold> 
-                { breeds[0]?.data[0].life_span } 
+                { catBreed[0]?.data[0].life_span } 
               </ContentDataDesc>
               <ContentDataDesc> 
                 <ContentDataBox>
                   <TextBold> Adaptability: </TextBold> 
-                  { renderScore(breeds[0]?.data[0].adaptability) }
+                  { renderScore(catBreed[0]?.data[0].adaptability) }
                 </ContentDataBox>
               </ContentDataDesc>
               <ContentDataDesc> 
                 <ContentDataBox>
                   <TextBold> Affection level: </TextBold> 
-                  { renderScore(breeds[0]?.data[0].affection_level) }
+                  { renderScore(catBreed[0]?.data[0].affection_level) }
                 </ContentDataBox>
               </ContentDataDesc>
               <ContentDataDesc> 
                 <ContentDataBox>
                   <TextBold> Child friendly: </TextBold> 
-                  { renderScore(breeds[0]?.data[0].child_friendly) }
+                  { renderScore(catBreed[0]?.data[0].child_friendly) }
                 </ContentDataBox>
               </ContentDataDesc>
               <ContentDataDesc> 
                 <ContentDataBox>
                   <TextBold> Energy level: </TextBold> 
-                  { renderScore(breeds[0]?.data[0].energy_level) }
+                  { renderScore(catBreed[0]?.data[0].energy_level) }
                 </ContentDataBox>
               </ContentDataDesc>
               <ContentDataDesc> 
                 <ContentDataBox>
                   <TextBold> Intelligence: </TextBold> 
-                  { renderScore(breeds[0]?.data[0].intelligence) }
+                  { renderScore(catBreed[0]?.data[0].intelligence) }
                 </ContentDataBox>
               </ContentDataDesc>
               <ContentDataDesc> 
                 <ContentDataBox>
                   <TextBold> Health issues: </TextBold> 
-                  { renderScore(breeds[0]?.data[0].health_issues) }
+                  { renderScore(catBreed[0]?.data[0].health_issues) }
                 </ContentDataBox>
               </ContentDataDesc>
               <ContentDataDesc> 
                 <ContentDataBox>
                   <TextBold> Social needs: </TextBold> 
-                  { renderScore(breeds[0]?.data[0].social_needs) }
+                  { renderScore(catBreed[0]?.data[0].social_needs) }
                 </ContentDataBox>
               </ContentDataDesc>
               <ContentDataDesc> 
                 <ContentDataBox>
                   <TextBold> Stranger friendly: </TextBold> 
-                  { renderScore(breeds[0]?.data[0].stranger_friendly) }
+                  { renderScore(catBreed[0]?.data[0].stranger_friendly) }
                 </ContentDataBox>
               </ContentDataDesc>
             </ContentData>
@@ -170,4 +157,4 @@ const DetailBreed = () => {
   );
 }
 
-export default DetailBreed;
+export default Breed;
