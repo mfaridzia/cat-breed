@@ -1,5 +1,7 @@
 # Cat Wiki 
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a594a016-ce17-4c80-86a2-482b0a9c18ee/deploy-status)](https://app.netlify.com/sites/cat-breed/deploys)
+
 Cat Wiki is a web based cat breed explorer based on The Cat API
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
