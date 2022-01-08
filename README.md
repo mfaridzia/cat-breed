@@ -15,8 +15,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - React-select
 - The Cat API
 
-## React Query Version
-This project was bootstrapped with [Cat Wiki React Query Version](https://github.com/mfaridzia/cat-breed/tree/cat-wiki-rq).
+### React Query Version
+[Cat Wiki](https://github.com/mfaridzia/cat-breed/tree/cat-wiki-rq)
 
 ## Caveats
 
