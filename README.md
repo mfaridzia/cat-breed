@@ -9,10 +9,14 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Tools
 - JavaScript
 - React
+- React Query
 - Styled-components
 - Phosphor-react
 - React-select
 - The Cat API
+
+## React Query Version
+This project was bootstrapped with [Cat Wiki React Query Version](https://github.com/mfaridzia/cat-breed/tree/cat-wiki-rq).
 
 ## Caveats
 
